@@ -1,43 +1,55 @@
 import React from 'react';
-import user from '../../json/user'
-import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 import styles from './Profile.module.css'
 
-console.log(styles);
 
-const {name, tag, location, avatar, stats} = user
-
-
-const Profile = (props) => {
+const Profile = ({name, tag, location, avatar, stats}) => {
     return(
-        <div className="styles.profile">
-            <div className="description">
+        <div className={styles.profile}>
+            <div className={styles.description}>
                 <img
-                src={avatar}
-                alt="Аватар пользователя"
-                className="avatar"
+                    src={avatar}
+                    alt="Аватар пользователя"
+                    className={styles.avatar}
                 />
-                <p className="styles.name"> {name}</p>
-                <p className="tag"> {tag}</p>
-                <p className="location"> {location}</p>
+                <p className={styles.name}> {name}</p>
+                <p className={styles.tag}> {tag}</p>
+                <p className={styles.location}> {location}</p>
             </div>
 
-            <ul className="stats">
+            <ul className={styles.stats}>
                 <li>
-                <span className="label">Followers</span>
-                <span className="quantity"> {stats.followers}</span>
+                    <span className={styles.label}>Followers</span>
+                    <span className={styles.quantity}> {stats.followers}</span>
                 </li>
                 <li>
-                <span className="label">Views</span>
-                <span className="quantity"> {stats.views}</span>
-                </li>
+                    <span className={styles.label}>Views</span>
+                    <span className={styles.quantity}> {stats.views}</span>
+                    </li>
                 <li>
-                <span className="label">Likes</span>
-                <span className="quantity"> {stats.likes}</span>
+                    <span className={styles.label}>Likes</span>
+                    <span className={styles.quantity}> {stats.likes}</span>
                 </li>
             </ul>
     </div>
     )
 }
+
+Profile.defaultProps  = {
+    name: 'what is your name',
+    tag: 'how do you want that people to reach out to you',
+    location: 'where are you ',
+    avatar: 'https://www.flaticon.com/svg/static/icons/svg/3784/3784184.svg',
+    stats: {followers: 0, views: 0, likes: 0}
+}
+
+Profile.propTypes = {
+    name: PropTypes.string,
+    tag: PropTypes.string,
+    location: PropTypes.string,
+    avatar: PropTypes.string,
+    stats: PropTypes.object.isRequired
+}
+
 
 export default Profile;

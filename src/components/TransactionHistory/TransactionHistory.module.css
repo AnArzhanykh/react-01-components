@@ -1,0 +1,33 @@
+.transactionHistory {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-collapse: collapse;
+    border: 1px solid grey;
+}
+
+thead {
+    background-color: lightskyblue;
+    color: white;
+}
+
+tbody{
+    color: gray;
+}
+
+tbody tr {
+    background-color: white;
+}
+
+tbody tr:nth-child(2n) {
+    background-color: silver;
+}
+
+th, td {
+    border: 1px solid grey;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

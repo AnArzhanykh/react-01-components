@@ -1,27 +1,40 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import data from '../../json/statistical-data.json'
-
+import PropTypes from 'prop-types'
+import styles from './Statistics.module.css';
 
 
 const Statistics = ( {title, stats}) =>{
-    console.log(stats);
     return(
-        <section className="statistics">
-            <h2 className="title">{title}</h2>
-
-            {/* <ul className="stat-list">
-                stats.map(elem => {
-                    <li className="item" key="elem.id">
-                        <span className="label">{elem.label}</span>
-                        <span className="percentage">{elem.percentage}</span>
-                    </li>
-                })
-
-            </ul> */}
+        <section className={styles.statistics}>
+            {title && <h2 className={styles.title}>{title}</h2>}
+            <ul className={styles.statList}>
+                {stats.map(({id, label, percentage}) =>{
+                    const color = {backgroundColor: randColor()}
+                    return(<li className={styles.item} style={color} key={id}>
+                            <span className={styles.label}> {label}</span>
+                            <span className={styles.percentage}> {percentage}%</span>
+                        </li>
+                )})}
+            </ul>
         </section>
     )
 }
+
+Statistics.propTypes = {
+    title: PropTypes.string,
+    stats: PropTypes.array.isRequired
+}
+
+
+function randColor() {
+                    const r = Math.floor(Math.random() * (256)),
+                    g = Math.floor(Math.random() * (256)),
+                    b = Math.floor(Math.random() * (256)),
+                    color = '#' + r.toString(16) + g.toString(16) + b.toString(16);
+                return  color;
+            }
+
+
 
 
 export default Statistics;
